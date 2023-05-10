@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import image from '../../assets/images/login/login.svg'
 import { Link } from 'react-router-dom';
+import { AuthContex } from '../../provider/AuthProvider';
 
 const SingUp = () => {
+    const {creatUser} = useContext(AuthContex)
 
     const handleSingUp = event =>{
         event.preventDefault()
@@ -12,6 +14,14 @@ const SingUp = () => {
         const password = form.password.value;
 
         console.log(name , email , password)
+        creatUser(email , password)
+        .then(result =>{
+            const creatUser = result.user;
+            console.log(creatUser)
+        })
+        .catch(err =>{
+            console.log(err)
+        })
     }
 
 
