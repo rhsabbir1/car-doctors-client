@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       {
         path: 'cheekout/:id',
         element: <Cheekout></Cheekout>,
-        loader: () => fetch(`http://localhost:5000/services/645bbff85f4c925db2beb8be`)
+        loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
       }
     ]
   }
