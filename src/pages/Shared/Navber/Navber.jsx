@@ -20,15 +20,17 @@ const Navber = () => {
         }
 
     const navItem = <>
-        <li><Link to="/">Home</Link></li>
+        <li className='mr-1'><Link to="/">Home</Link></li>
         {
-            user ? <li><button onClick={handleLogout}>Log out</button></li>
+            user ? 
+            <>
+            <li className='mr-1'><Link to="/bookings">My Bookings</Link></li>
+            <li className='mr-1'><button onClick={handleLogout}>Log out</button></li>
+            </>
             :
-            <li><Link to="/login">Login</Link></li>
+            <li className='mr-1'><Link to="/login">Login</Link></li>
         }
-        
-        <li><Link to="/">Home</Link></li>
-        
+                
     </>
 
     return (
