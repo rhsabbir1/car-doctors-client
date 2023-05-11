@@ -1,9 +1,15 @@
 import React, { useContext } from 'react';
 import image from '../../assets/images/login/login.svg'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContex } from '../../provider/AuthProvider';
 
 const Login = () => {
+
+    const location = useLocation()
+    let navigate = useNavigate()
+    console.log(location)
+    const from = location?.state?.from.pathname || "/";
+
 const {singIn} = useContext(AuthContex)
     const handleLogin = event =>{
         event.preventDefault()
@@ -15,10 +21,10 @@ const {singIn} = useContext(AuthContex)
         singIn(email , password)
         .then(result =>{
             const logUser = result.user;
-            console.log(logUser)
+           navigate(from , {replace : true})
         })
         .catch(err =>{
-            console.log(ree)
+            console.log(err)
         })
 
     }

@@ -51,6 +51,25 @@ const Bookings = () => {
         })
     }
 
+    const handleBooking =id =>{
+        fetch(`http://localhost:5000/bookings/${id}`,{
+            method:"PATCH",
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify({status : 'confirm'})
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount){
+                const remaning = bookings.filter(booking => booking._id !==id)
+                const updateData = bookings.find(booking => booking._id === id)
+                updateData.status= 'confirm';
+                const newBooking = [updateData , ...remaning]
+                setBookData(newBooking)
+            }
+        })
+    }
 
 
     return (
@@ -80,6 +99,7 @@ const Bookings = () => {
                                 key={booking._id}
                                 booking={booking}
                                 handleDelet={handleDelet}
+                                handleBooking={handleBooking}
                             ></BookingTable>)
                         }
                     </tbody>

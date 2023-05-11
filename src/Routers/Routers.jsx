@@ -26,12 +26,12 @@ const router = createBrowserRouter([
       },
       {
         path: 'cheekout/:id',
-        element: <Cheekout></Cheekout>,
+        element: <PrivateRoute><Cheekout></Cheekout></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
       },
       {
         path:'bookings',
-        element:<PrivateRoute><Bookings></Bookings></PrivateRoute>
+        element:<Bookings></Bookings>
       }
     ]
   }
