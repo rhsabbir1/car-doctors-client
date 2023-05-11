@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ServicesCard = ({service}) => {
     const {title , img ,price} = service
@@ -10,11 +11,10 @@ const ServicesCard = ({service}) => {
                     
                     {title}
                 </h2>
-                <p className='text-2xl font-semibold text-yellow-500'>Price : ${price}</p>
-                <div className="card-actions justify-end">
-                    <div className="badge badge-outline">Fashion</div>
-                    <div className="badge badge-outline">Products</div>
-                </div>
+                <p className=' font-semibold text-yellow-500'>Price : ${price}</p>
+                
+                    <div className="badge badge-outline"><Link to={`/cheekout/${service._id}`}>Book Now</Link></div>
+                
             </div>
         </div>
     );
