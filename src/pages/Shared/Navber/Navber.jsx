@@ -12,7 +12,7 @@ const Navber = () => {
     const handleLogout = ()=>{
         logOut()
         .then(()=>{
-
+            localStorage.removeItem('car-token')
         })
         .catch(err=>{
             console.log(err)

@@ -7,7 +7,7 @@ const Login = () => {
 
     const location = useLocation()
     let navigate = useNavigate()
-    console.log(location)
+    // console.log(location)
     const from = location?.state?.from.pathname || "/";
 
 const {singIn} = useContext(AuthContex)
@@ -20,8 +20,24 @@ const {singIn} = useContext(AuthContex)
         console.log( email , password)
         singIn(email , password)
         .then(result =>{
-            const logUser = result.user;
-           navigate(from , {replace : true})
+            const logUser = {
+               user : result.user.email 
+            };
+    
+            fetch('http://localhost:5000/jwt',{
+                method:"POST",
+                headers:{
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify(logUser)
+            })
+            .then(res=>res.json())
+            .then(data =>{
+               const  token=data.token
+                localStorage.setItem('car-token' , token)
+                navigate(from , {replace : true})
+            })
+        //   
         })
         .catch(err =>{
             console.log(err)
